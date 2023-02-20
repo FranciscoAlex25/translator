@@ -1,6 +1,8 @@
 from tkinter import Tk
 from tkinter import ttk 
 from googletrans import Translator
+import ttkbootstrap
+from ttkbootstrap.constants import *
 
 
 class Translate(Tk):
@@ -17,6 +19,9 @@ class Translate(Tk):
         self.style.configure('TLabel', font=('Helvetica', 14))
         self.style.configure('TButton', background='#3CB371')
 
+        ttkbootstrap.Style('darkly')
+
+        self.bind('<Return>', self.translate)
     def labels_and_entries(self):
         self.label1 = ttk.Label(text='Digite a frase')
         self.label1.place(relx=0.4, rely=0.05)
@@ -33,7 +38,7 @@ class Translate(Tk):
         self.btntranslate = ttk.Button(text='traduzir', command=self.translate)
         self.btntranslate.place(relx=0.3, rely=0.85, relwidth=0.4, relheight=0.1)
         
-    def translate(self):
+    def translate(self, event=None):
         self.frase = self.entry1.get()
 
         if self.frase != '':
